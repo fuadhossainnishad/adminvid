@@ -1,10 +1,10 @@
 import React, { ReactNode } from "react";
-import Headbar from "@/components/Headbar/page";
+import Sidebar from "@/components/Sidebar/page";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <main className="">
-      <Headbar />
+      <Sidebar />
       {children}
     </main>
   );

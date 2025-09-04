@@ -1,6 +1,7 @@
 "use client";
 import FormField from "@/utils/FormField";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -66,12 +67,31 @@ export default function ForgotPasswordForm() {
             inputCls={data.inputCls}
           />
         ))}
+        <section className="flex justify-between items-center">
+          <div className="flex gap-3">
+            <input
+              id="remember-me"
+              type="checkbox"
+              placeholder=""
+              className="rounded-lg border-[3px] border-[#FF6F61] w-6 h-6"
+            />
+            <label htmlFor="remember-me" className="font-bold leading-6">
+              Remember Password
+            </label>
+          </div>
+          <Link
+            href="/forgot-password"
+            className="leading-6 font-bold text-[#262621] mt-[18px]"
+          >
+            Forgot password?
+          </Link>
+        </section>
         <button
           type="submit"
           disabled={isSubmitting}
           className="cursor-pointer rounded-lg bg-[#ff6f61] font-urbanist text-[#F1F8FD] py-[10px] font-extrabold text-[16px] leading-[24px] mt-[10px]"
         >
-          {isSubmitting ? "Getting OTP..." : "Get OTP"}
+          {isSubmitting ? "Sending OTP..." : "Send OTP"}
         </button>
       </form>
     </FormProvider>
