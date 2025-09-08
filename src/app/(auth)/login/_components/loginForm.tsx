@@ -65,7 +65,7 @@ export default function LoginForm() {
   } = methods;
 
   const onSubmit = async (data: TLogin) => {
-    router.push("/admin/dashboard");
+    router.push("/dashboard");
     console.log(data);
   };
 
@@ -80,7 +80,6 @@ export default function LoginForm() {
             key={ind}
             name={data.name}
             title={data.title}
-            placeHolder={data.placeholder}
             icon={data.icon}
             type={data.type}
           />

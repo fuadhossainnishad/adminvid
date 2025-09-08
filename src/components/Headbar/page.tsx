@@ -1,21 +1,41 @@
 import Image from "next/image";
 import React from "react";
 
-export default function Headbar() {
+export default function Headbar({
+  toggleSidebar,
+  openSidebar,
+}: {
+  toggleSidebar: () => void;
+  openSidebar: boolean;
+}) {
   return (
-    <header className="flex justify-end items-center gap-[30px]">
-      <Image
-        src="/assets/icons/notification.svg"
-        alt="profile"
-        width={40}
-        height={40}
-        className="rounded-full "
-      />
-      <section className="flex gap-[14px] items-center">
-        <div className="text-right">
-          <h1 className="text-sm font-bold leading-[22px] ">James Mitchell</h1>
-          <h1 className="text-[10px] font-regular leading-[14px] ">Admin</h1>
-        </div>
+    <header className="flex justify-between items-center gap-[30px]">
+      <section
+        className="flex justify-between w-[250px] "
+        onClick={toggleSidebar}
+      >
+        {openSidebar && (
+          <Image
+            src="/assets/images/logo.svg"
+            alt="logo"
+            height={53}
+            width={53}
+          />
+        )}
+
+        <Image src="/assets/icons/dash.svg" alt="dash" height={6} width={18} />
+      </section>
+      <section className="flex gap-4">
+        <section className="flex gap-[14px] items-center">
+          <Image
+            src="/assets/icons/notification.svg"
+            alt="profile"
+            width={40}
+            height={40}
+            className="rounded-full "
+          />
+          <div className="rounded-3xl">8</div>
+        </section>
         <Image
           src="/assets/icons/totalVenue.svg"
           alt="profile"

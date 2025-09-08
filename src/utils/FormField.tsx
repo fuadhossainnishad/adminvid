@@ -3,7 +3,6 @@ import { useFormContext } from "react-hook-form";
 export default function FormField({
   name,
   title,
-  placeHolder,
   icon,
   type = "text",
   inputCls,
@@ -12,7 +11,6 @@ export default function FormField({
 }: {
   name?: string;
   title?: string;
-  placeHolder?: string;
   icon?: React.ReactNode[];
   type: string;
   inputCls?: string;
@@ -50,7 +48,6 @@ export default function FormField({
             type={inputType}
             id={name}
             {...(register(name!), registerLogic)}
-            placeholder={placeHolder}
             className={
               innerInputCls
                 ? innerInputCls

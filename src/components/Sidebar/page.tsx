@@ -5,43 +5,43 @@ import Link from "next/link";
 const sidebarData = [
   {
     title: "Dashboard",
-    path: "/admin/dashboard",
+    path: "/dashboard",
     icon: "/assets/icons/dashboard.svg",
     icongray: "/assets/icons/dashboardgray.svg",
   },
   {
     title: "User Management",
-    path: "/admin/users",
+    path: "/users",
     icon: "/assets/icons/user.svg",
     icongray: "/assets/icons/usergray.svg",
   },
   {
     title: "Earning",
-    path: "/admin/venues",
+    path: "/earning",
     icon: "/assets/icons/earning.svg",
     icongray: "/assets/icons/earninggray.svg",
   },
   {
     title: "Video Management",
-    path: "/admin/venue-wallet",
+    path: "/video",
     icon: "/assets/icons/video.svg",
     icongray: "/assets/icons/videogray.svg",
   },
   {
     title: "Manage Subscription",
-    path: "/admin/venue-wallet",
+    path: "/subscription",
     icon: "/assets/icons/subscription.svg",
     icongray: "/assets/icons/subscriptiongray.svg",
   },
   {
     title: "Notifications",
-    path: "/admin/earnings",
+    path: "/notification",
     icon: "/assets/icons/notification.svg",
     icongray: "/assets/icons/notificationgray.svg",
   },
   {
     title: "Settings",
-    path: "/admin/settings",
+    path: "/settings",
     icon: "/assets/icons/settings.svg",
     icongray: "/assets/icons/settingsgray.svg",
   },
@@ -50,15 +50,6 @@ const sidebarData = [
 export default function Sidebar() {
   return (
     <main className="flex flex-col w-[250px] px-4 gap-10 pt-[30px]  shadow-[4px_0px_8px_rgba(0,0,0,0.1)] min-h-screen">
-      <section className="flex justify-between">
-        <Image
-          src="/assets/images/logo.svg"
-          alt="logo"
-          height={53}
-          width={53}
-        />
-        <Image src="/assets/icons/dash.svg" alt="dash" height={6} width={18} />
-      </section>
       <section className="items-center space-y-5 w-full">
         {sidebarData.map((data, ind) => (
           <Link
