@@ -13,11 +13,11 @@ export default function AdminLayout({
     setOpenSidebar(!openSidebar);
   };
   return (
-    <main className="space-y-[22px] px-[3%]">
+    <main className="overflow-y-hidden">
       <Headbar toggleSidebar={handleToggle} openSidebar={openSidebar} />
       <section className="flex">
         {openSidebar && <Sidebar />}
-        {children}
+        <section className="bg-bg-list-header/20 grow p-10">{children}</section>
       </section>
     </main>
   );

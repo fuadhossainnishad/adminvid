@@ -9,9 +9,9 @@ export default function Headbar({
   openSidebar: boolean;
 }) {
   return (
-    <header className="flex justify-between items-center gap-[30px]">
+    <header className="flex justify-between items-center px-[2%] py-3 shadow-md shadow-shadow">
       <section
-        className="flex justify-between w-[250px] "
+        className="flex justify-between w-[13%] items-center"
         onClick={toggleSidebar}
       >
         {openSidebar && (
@@ -37,7 +37,7 @@ export default function Headbar({
           <div className="rounded-3xl">8</div>
         </section>
         <Image
-          src="/assets/icons/totalVenue.svg"
+          src="/assets/images/logo.svg"
           alt="profile"
           width={40}
           height={40}

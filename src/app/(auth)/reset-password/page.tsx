@@ -5,28 +5,24 @@ import Image from "next/image";
 
 export default function ResetPasswordPage() {
   return (
-    <main className="gap-8 flex flex-col items-center justify-center min-h-screen  text-[#FF6F61] ">
-      <div className="gap-3 flex flex-col items-center">
-        <h1 className="text-[30px] font-extrabold text-secondary font-urbanist leading-[38px]">
-          Set new password
-        </h1>
-        <h1 className="text-[16px] text-center  text-[#667085] font-normal text-secondary font-urbanist leading-[24px]">
-          Creat a new password. Ensure it differs from previous ones of security
+    <main className="w-full space-y-7 items-center flex flex-col">
+      <div className="space-y-5 text-center w-full flex flex-col items-center">
+        <h1 className="text-2xl  font-bold text-[#103F73]  ">
+          Reset Password
         </h1>
       </div>
-
       <ResetPasswordForm />
-
       <Link
-        href="/forgot-password"
+        href="/login"
         className="flex gap-2 leading-5 font-normal text-sm text-[#667085]"
       >
         <Image
           key="email"
-          src="/assets/icons/leftArrow.svg"
+          src="/icons/downArrow.svg"
           alt="email"
           width={12}
           height={12}
+          className="rotate-90"
         />
         <div>Back to log in</div>
       </Link>

@@ -1,9 +1,10 @@
 import React from 'react'
+import VideoList from './_components/VideoList'
 
 export default function VideoPage() {
   return (
-    <div>
-      
-    </div>
+    <main className=''>
+      <VideoList/>
+    </main>
   )
 }

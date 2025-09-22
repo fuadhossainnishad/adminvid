@@ -3,18 +3,16 @@ import LoginForm from "./_components/loginForm";
 
 export default function LoginPage() {
   return (
-    <main className="flex  items-center justify-center min-h-screen  text-[#FF6F61]">
- 
-      <section className="">
-        <h1 className="text-7xl font-extrabold text-secondary font-urbanist leading-[108px] mb-[72px]">
-          Login to Account
+    <main className="space-y-7 w-full items-center">
+      <div className="space-y-5 text-center w-full flex flex-col items-center">
+        <h1 className="text-2xl  font-bold text-[#103F73]  ">
+          Signin To Account
         </h1>
-        <h1 className="text-[36px] font-bold text-secondary font-urbanist leading-[36px] mb-[36px]">
+        <h1 className="text-sm font-normal text-wrap w-[60%] text-[#5C5C5C]  ">
           Please enter your email and password to continue
         </h1>
-        <LoginForm />
-
-      </section>
+      </div>
+      <LoginForm />
     </main>
   );
 }
