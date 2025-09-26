@@ -25,7 +25,7 @@ export default function SubscriptionCard({
           {subs["Billing Cycle"]}
         </h1>
       </div>
-      <section className="space-y-3 flex-1 items-center">
+      <section className="space-y-1 flex-1 items-center">
         {subs["Short Description"].map((feat, ind) => (
           <div className="flex gap-3" key={ind}>
             <Image

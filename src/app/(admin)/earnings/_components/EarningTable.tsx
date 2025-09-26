@@ -1,62 +1,16 @@
 "use client";
-import Pagination from "@/components/Pagination";
 import apiList from "@/services/apiList";
 import apiCall, { TMethods } from "@/services/apiMethodList";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { IEarnings } from "../Data";
 
-export enum TSubscription {
-  ANNUAL = "Annual",
-  FREE = "Free",
-  MONTHLY = "Monthly",
-}
-
-export interface IEarnings {
-  Serial: string;
-  User: {
-    photo: string;
-    name: string;
-  };
-  Subscription: TSubscription;
-  Amount: number;
-  "Acc Number": string;
-  Date: Date;
-}
-
-export interface Action {
-  view: React.ReactNode;
-  block: React.ReactNode;
-}
-
-const earningsData: IEarnings[] = [
-  {
-    Serial: "1",
-    User: { photo: "/assets/images/profile.svg", name: "John Doe" },
-    Subscription: TSubscription.ANNUAL,
-    Amount: 120.5,
-    "Acc Number": "123456789",
-    Date: new Date("Jan 15, 2025"),
-  },
-  {
-    Serial: "2",
-    User: { photo: "/assets/images/profile.svg", name: "Jane Smith" },
-    Subscription: TSubscription.FREE,
-    Amount: 50.75,
-    "Acc Number": "987654321",
-    Date: new Date("2023-09-02"),
-  },
-  {
-    Serial: "3",
-    User: { photo: "/assets/images/profile.svg", name: "Alice Johnson" },
-    Subscription: TSubscription.MONTHLY,
-    Amount: 80.25,
-    "Acc Number": "456789123",
-    Date: new Date("2023-09-03"),
-  },
-];
-
-export default function EarningList() {
+export default function EarningTable({
+  earningsData,
+}: {
+  earningsData: IEarnings[];
+}) {
   const [view, setView] = useState(false);
   const [earnings, setEarnings] = useState<IEarnings[]>(earningsData);
 
@@ -75,11 +29,8 @@ export default function EarningList() {
   });
 
   return (
-    <main className="border-[1px] border-[#E5E7EB] rounded-xl grow">
-      <h2 className="text-lg font-semibold leading-7 bg-white p-5 rounded-xl w-full">
-        User List
-      </h2>
-      <table className="w-full text-center text-sm border-[#E5E7EB] ">
+    <main className="border-border border mx-4 rounded-lg bg-white overflow-hidden">
+      <table className=" w-full text-center text-sm">
         <thead>
           <tr className="bg-bg-list-header/40 text-list-header">
             {Object.keys(earnings[0]!).map((key, ind) => (
@@ -134,7 +85,6 @@ export default function EarningList() {
           ))}
         </tbody>
       </table>
-      <Pagination currentPage={1} />
     </main>
   );
 }

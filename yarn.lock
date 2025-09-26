@@ -1334,6 +1334,11 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
 
+autobind-decorator@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/autobind-decorator/-/autobind-decorator-2.4.0.tgz#ea9e1c98708cf3b5b356f7cf9f10f265ff18239c"
+  integrity sha512-OGYhWUO72V6DafbF8PM8rm3EPbfuyMZcJhtm5/n26IDwO18pohE4eNazLoCGhPiXOCD0gEGmrbU3849QvM8bbw==
+
 available-typed-arrays@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.7.tgz#a5cc375d6a03c2efc87a553f3e0b1522def14846"
@@ -2576,6 +2581,20 @@ jiti@^2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-2.5.1.tgz#bd099c1c2be1c59bbea4e5adcd127363446759d0"
   integrity sha512-twQoecYPiVA5K/h6SxtORw/Bs3ar+mLUtoPSc7iMXzQzK8d7eJ/R09wmTwAjiamETn1cXYPGfNnu7DMoHgu12w==
+
+jodit-react@^5.2.25:
+  version "5.2.25"
+  resolved "https://registry.yarnpkg.com/jodit-react/-/jodit-react-5.2.25.tgz#966a47f8792c6da004f5e22986e4fc64f401f847"
+  integrity sha512-BbzNgLnnIGS8vTxxohxkcWGp9YxpQB1Sy7TU1RyMLxWDoa6pN4dTCvYvriUqY70QrRPOQBkGn6QInd3RM8n8Gg==
+  dependencies:
+    jodit "^4.6.12"
+
+jodit@^4.6.12:
+  version "4.6.12"
+  resolved "https://registry.yarnpkg.com/jodit/-/jodit-4.6.12.tgz#486984eabb4b018c6940030c7a30d2181ecec1ce"
+  integrity sha512-6TbeTHTenUORMFzgSruRRevggk+q3rtt/EuSvXwN2aA6Vd0OgI0fadU6D6sPP2LXujtkftOipA3KZM8yZp8i3Q==
+  dependencies:
+    autobind-decorator "^2.4.0"
 
 "js-tokens@^3.0.0 || ^4.0.0":
   version "4.0.0"

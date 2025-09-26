@@ -15,14 +15,16 @@ export default function SubscriptionPage() {
   // };
 
   return (
-    <main className={` relative flex justify-center w-full`}>
+    <main
+      className={`p-5 bg-white relative flex justify-center w-full h-full border-[1px] border-[#E5E7EB] rounded-xl overflow-hidden`}
+    >
       <section
         className={`bg-white grow ${create === true ? "opacity-30" : ""} pb-10`}
       >
         <section
           className={`p-5 rounded-xl w-full flex justify-between items-center `}
         >
-          <h2 className="text-lg font-semibold leading-7 ">
+          <h2 className="text-xl font-semibold leading-7 text-list-header">
             Manage Subscription
           </h2>
           <div
@@ -54,7 +56,7 @@ export default function SubscriptionPage() {
         </section>
       </section>
       {create && <SubscriptionField setFunc={setCreate} />}
-      {edit && <SubscriptionField setFunc={setCreate} subs={sub} />}
+      {edit && <SubscriptionField setFunc={setEdit} subs={sub} />}
     </main>
   );
 }

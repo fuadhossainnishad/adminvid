@@ -13,9 +13,9 @@ export default function AdminLayout({
     setOpenSidebar(!openSidebar);
   };
   return (
-    <main className="overflow-y-hidden">
+    <main className="min-h-screen flex flex-col">
       <Headbar toggleSidebar={handleToggle} openSidebar={openSidebar} />
-      <section className="flex">
+      <section className="flex grow ">
         {openSidebar && <Sidebar />}
         <section className="bg-bg-list-header/20 grow p-10">{children}</section>
       </section>

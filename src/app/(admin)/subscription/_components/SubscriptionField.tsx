@@ -160,7 +160,7 @@ export default function SubscriptionField({
             type="submit"
             className="mt-4 p-2 bg-gradient-to-b from-button to-button2 text-white rounded-lg font-semibold w-full"
           >
-            {subs ? "Save" : "Create"}{" "}
+            {subs ? "Save" : "Create"}
           </button>
         </div>
       </form>

@@ -27,6 +27,9 @@
   --color-text-clicked: #083d70;
   --color-text-clicked2: #305fa1;
   --color-text-subs-add: #010101;
+  --color-text-settings: #252525;
+  --color-text-settings-content: #305fa1;
+  --color-text-settings-content-inactive: #989898;
   --color-subs: #585574;
   --color-subs2: #595959;
   --color-subs-create: #2d7eac;
@@ -34,17 +37,31 @@
   --color-subs-add-text: #2d7eac;
   --color-border: #e4e4e4;
   --color-border-subs: #425066;
+  --color-border-setting: #d0d0d0;
   --color-shadow: #d6d6d6;
   --color-graph: #4389d7;
   --color-graph2: #0f3e72;
   --color-bg-list-header: #bfdbeb;
   --color-bg-subs-add: #e6e6e8;
+  --color-text-not: #727272;
+  --color-text-notf-title: #33363f;
 }
 /* @layer utilities {
   .border-custom {
     border-color: var(--color-border);
   }
 } */
+
+@layer components {
+  .jodit-wysiwyg {
+    padding: 10px !important;
+    border: none !important;
+  }
+
+  .jodit-iframe {
+    border: none !important;
+  }
+}
 
 body {
   background: var(--background);

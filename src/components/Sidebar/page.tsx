@@ -69,7 +69,7 @@ export default function Sidebar() {
   };
 
   return (
-    <main className="flex flex-col min-w-[300px] shadow-[4px_0px_8px_rgba(0,0,0,0.1)] min-h-screen overflow-y-hidden">
+    <main className="flex flex-col min-w-[300px] shadow-[4px_0px_8px_rgba(0,0,0,0.1)] ">
       <section className="px-8 py-5 space-y-4 w-full border-b-[1px] border-b-border">
         {sidebarData.map((data, ind) => (
           <Link

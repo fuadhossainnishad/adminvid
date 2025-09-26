@@ -46,7 +46,7 @@ const recentSignups: IRecentSignup[] = [
   },
 ];
 
-export default function UserList() {
+export default function UserTable() {
   const [view, setView] = useState(false);
   const [block, setBlock] = useState(false);
 
@@ -64,7 +64,7 @@ export default function UserList() {
   };
 
   return (
-
+    <main className="border-border border rounded-lg bg-white overflow-hidden">
       <table className="w-full text-center text-sm border-[#E5E7EB] ">
         <thead>
           <tr className="bg-bg-list-header/40 text-list-header">
@@ -122,5 +122,6 @@ export default function UserList() {
           ))}
         </tbody>
       </table>
+    </main>
   );
 }
