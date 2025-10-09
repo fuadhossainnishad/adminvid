@@ -1,10 +1,17 @@
 "use client";
 import React, { useState } from "react";
-import UserTable from "./_components/UserTable";
+import UserTable, {
+  IRecentSignup,
+  recentSignups,
+} from "./_components/UserTable";
 import Pagination from "@/components/Pagination";
 import DateFilter from "../../../components/DateFilter";
+import UserModal from "./_components/UserModal";
 
 export default function UserPage() {
+  const [openModal, setOpenModal] = useState(false);
+  const [modalData, setModalData] = useState<IRecentSignup>(recentSignups[0]);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 1;
@@ -34,15 +41,15 @@ export default function UserPage() {
   };
 
   return (
-    <main className="p-8 space-y-6 border-[1px] border-[#E5E7EB] bg-white rounded-xl h-full flex flex-col">
+    <main className="p-8 space-y-6 border-[1px] border-[#E5E7EB] bg-white rounded-xl h-full flex flex-col relative">
       <section className="flex justify-between">
         <h2 className="text-lg text-list-header font-semibold leading-7 bg-white  rounded-xl w-full">
           User Management
         </h2>
         <DateFilter searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </section>
-      <section className="flex flex-col grow overflow-auto ">
-        <UserTable />
+      <section className="flex flex-col grow">
+        <UserTable setModalData={setModalData} setOpenModal={setOpenModal} />
       </section>
 
       <Pagination
@@ -50,6 +57,7 @@ export default function UserPage() {
         onPageChange={handlePageChange}
         totalPages={totalPages}
       />
+      {openModal && <UserModal data={modalData} setFunc={setOpenModal} />}
     </main>
   );
 }

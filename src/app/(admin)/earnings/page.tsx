@@ -4,11 +4,14 @@ import Pagination from "../../../components/Pagination";
 import { Input } from "@/components/ui/input";
 import { Settings2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { earningsData } from "./Data";
+import { earningsData, IEarnings } from "./Data";
 import { Filter } from "@/components/Filter";
 import EarningTable from "./_components/EarningTable";
 
 export default function EarningsPage() {
+  const [openModal, setOpenModal] = useState(false);
+  const [modalData, setModalData] = useState<IEarnings>(earningsData[0]);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 12;
@@ -39,7 +42,7 @@ export default function EarningsPage() {
   };
 
   return (
-    <main className="border-[1px] border-[#E5E7EB] bg-white rounded-xl grow">
+    <main className="border-[1px] border-[#E5E7EB] bg-white rounded-xl grow relative">
       <section className="flex justify-between p-5">
         <h2 className="text-lg text-list-header font-semibold leading-7  rounded-xl w-full">
           Earnings Overview

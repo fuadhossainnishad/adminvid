@@ -25,7 +25,7 @@ export interface Action {
   block: React.ReactNode;
 }
 
-const recentSignups: IRecentSignup[] = [
+export const recentSignups: IRecentSignup[] = [
   {
     "User ID": "1",
     Name: { photo: "/assets/images/profile.svg", name: "John Doe" },
@@ -46,8 +46,13 @@ const recentSignups: IRecentSignup[] = [
   },
 ];
 
-export default function UserTable() {
-  const [view, setView] = useState(false);
+export default function UserTable({
+  setOpenModal,
+  setModalData,
+}: {
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setModalData: React.Dispatch<React.SetStateAction<IRecentSignup>>;
+}) {
   const [block, setBlock] = useState(false);
 
   const handleBlock = async () => {
@@ -64,7 +69,7 @@ export default function UserTable() {
   };
 
   return (
-    <main className="border-border border rounded-lg bg-white overflow-hidden">
+    <main className="border-border border rounded-lg bg-white">
       <table className="w-full text-center text-sm border-[#E5E7EB] ">
         <thead>
           <tr className="bg-bg-list-header/40 text-list-header">
@@ -106,7 +111,8 @@ export default function UserTable() {
                   height={26}
                   className="cursor-pointer"
                   onClick={() => {
-                    setView(!view);
+                    setOpenModal(true);
+                    setModalData(signup);
                   }}
                 />
                 <Image

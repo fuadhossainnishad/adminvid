@@ -30,11 +30,11 @@ export default function VerifyOtpPage() {
       >
         <Image
           key="email"
-          src="/icons/downArrow.svg"
+          src="/assets/icons/backArrow.svg"
           alt="email"
-          width={12}
-          height={12}
-          className="rotate-90"
+          width={20}
+          height={20}
+          className=""
         />
         <div>Back to Forgot password</div>
       </Link>
