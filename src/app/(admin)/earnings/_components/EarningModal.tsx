@@ -28,8 +28,8 @@ export default function EarningModal({
         <section className=" justify-center flex flex-col space-y-4 px-4">
           <div className="flex flex-col items-center">
             <Image
-              src={data.Name.photo}
-              alt={data.Name.name}
+              src={data.User.photo}
+              alt={data.User.name}
               width={100}
               height={100}
               className="cursor-pointer"
@@ -37,10 +37,10 @@ export default function EarningModal({
                 setFunc(false);
               }}
             />
-            <h1 className="text-2xl">{data.Name.name}</h1>
+            <h1 className="text-2xl">{data.User.name}</h1>
           </div>
           <section className="">{
-            Object.entries(data).filter((key)=>key!==('serial'|| '')}</section>
+            Object.entries(data).filter((key) => key !== ('serial' || '')}</section>
         </section>
       </section>
     </main>

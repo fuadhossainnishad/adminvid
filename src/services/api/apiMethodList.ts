@@ -8,7 +8,7 @@ export enum TMethods {
     put = 'put'
 }
 
-const apiCall = async <T>(
+export const apiCall = async <T>(
     method: TMethods,
     url: string,
     data: T,

@@ -1,7 +1,7 @@
 "use client";
 import Pagination from "@/components/Pagination";
-import apiList from "@/services/apiList";
-import apiCall, { TMethods } from "@/services/apiMethodList";
+import apiList from "@/services/api/apiList";
+import apiCall, { TMethods } from "@/services/api/apiMethodList";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";

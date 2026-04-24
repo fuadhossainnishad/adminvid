@@ -1,21 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import useSettings from "@/utils/hooks/useSettings";
 
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 
-const tabs = ["Privacy Policy", "Terms & Condition", "About Us"];
-
+const tabs = [
+  { label: "Privacy Policy", key: "privacy_policy" as const },
+  { label: "Terms & Condition", key: "terms_conditions" as const },
+  { label: "About Us", key: "about_us" as const },
+];
 export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState(0);
-  const [content, setContent] = useState([
-    "<p>Edit your <b>Privacy Policy</b> here.</p>",
-    "<p>Edit your <b>Terms & Conditions</b> here.</p>",
-    "<p>Edit your <b>About Us</b> here.</p>",
-  ]);
+  const [content, setContent] = useState("");
+
+  const currentKey = tabs[activeTab].key;
+
+  const { settings, handleSaveChanges } = useSettings(currentKey);
 
   const joditConfig = {
     readonly: false,
@@ -56,9 +60,17 @@ export default function SettingsPage() {
     },
   };
 
-  const handleSave = () => {
-    console.log(`${tabs[activeTab]} Data`, content[activeTab]);
-    toast.success("Changes saved successfully!");
+  useEffect(() => {
+    setContent(settings?.content || "");
+  }, [settings]);
+
+  const handleSave = async () => {
+    try {
+      await handleSaveChanges(content);
+      toast.success("Changes saved successfully!");
+    } catch {
+      toast.error("Failed to save changes");
+    }
   };
 
   return (
@@ -70,33 +82,28 @@ export default function SettingsPage() {
         <div className="flex border-b border-border-setting mb-4">
           {tabs.map((tab, idx) => (
             <button
-              key={idx}
+              key={tab.key}
               onClick={() => setActiveTab(idx)}
-              className={`px-4 py-2 text-sm font-medium border-b-2 ${
-                activeTab === idx
-                  ? "border-text-clicked2 text-text-settings-content"
-                  : "border-transparent text-text-settings-content-inactive hover:text-black"
-              }`}
+              className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === idx
+                ? "border-text-clicked2 text-text-settings-content"
+                : "border-transparent text-text-settings-content-inactive hover:text-black"
+                }`}
             >
-              {tab}
+              {tab.label}
             </button>
           ))}
         </div>
 
         <div className="mb-4 px-4 py-2">
-          <h2 className="text-xl font-semibold">{tabs[activeTab]}</h2>
+          <h2 className="text-xl font-semibold">{tabs[activeTab].label}</h2>
           <p className="text-sm text-muted-foreground">Dec 4, 2019 21:42</p>
         </div>
 
         <div className="rounded-md px-4 py-2">
           <JoditEditor
-            value={content[activeTab]}
+            value={content}
             config={joditConfig}
-            onBlur={(newContent) => {
-              const updated = [...content];
-              updated[activeTab] = newContent;
-              setContent(updated);
-            }}
+            onBlur={(newContent: string) => setContent(newContent)}
           />
         </div>
 
@@ -109,6 +116,6 @@ export default function SettingsPage() {
           </Button>
         </div>
       </section>
-    </main>
+    </main >
   );
 }

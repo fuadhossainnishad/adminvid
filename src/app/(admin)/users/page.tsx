@@ -7,6 +7,7 @@ import UserTable, {
 import Pagination from "@/components/Pagination";
 import DateFilter from "../../../components/DateFilter";
 import UserModal from "./_components/UserModal";
+import useUsers from "@/utils/hooks/useUsers";
 
 export default function UserPage() {
   const [openModal, setOpenModal] = useState(false);
@@ -14,7 +15,9 @@ export default function UserPage() {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 1;
+  const usersPerPage = 10;
+
+  const { users } = useUsers()
 
   // Mock subscription data, replace with actual data
   const mockSubscription = [
@@ -23,10 +26,10 @@ export default function UserPage() {
     // Add more mock data as needed
   ];
 
-  const filteredSubscription = mockSubscription.filter(
+  const filteredSubscription = users.filter(
     (user) =>
-      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.serial.toLowerCase().includes(searchTerm.toLowerCase())
+      user.Name.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.Name.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const totalPages = Math.ceil(filteredSubscription.length / usersPerPage);
@@ -49,7 +52,7 @@ export default function UserPage() {
         <DateFilter searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </section>
       <section className="flex flex-col grow">
-        <UserTable setModalData={setModalData} setOpenModal={setOpenModal} />
+        <UserTable tableData={currentUsers} setModalData={setModalData} setOpenModal={setOpenModal} />
       </section>
 
       <Pagination

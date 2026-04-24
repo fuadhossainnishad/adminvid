@@ -2,8 +2,8 @@
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import apiList from "@/services/apiList";
-import apiCall, { TMethods } from "@/services/apiMethodList";
+import apiList from "@/services/api/apiList";
+import apiCall, { TMethods } from "@/services/api/apiMethodList";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -24,17 +24,18 @@ export default function LoginForm() {
   const onSubmit = async (data: FieldValues) => {
     console.log("Email:", data.email);
     console.log("Password:", data.password);
-    router.push("/dashboard");
+    // router.push("/dashboard");
 
     const res = await apiCall(TMethods.post, apiList.login, data);
-    console.log(res);
+    console.log(res.data);
 
     if (!res.success) {
       toast.error("Wrong login credentials");
       return;
     }
 
-    sessionStorage.setItem("token", res.data.token);
+    sessionStorage.setItem("token", res.data.access);
+    console.log("sessionstorage token:", sessionStorage.getItem("token"))
     toast.success("Signed in successfully");
     router.push("/dashboard");
   };
