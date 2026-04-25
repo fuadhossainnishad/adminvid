@@ -1,9 +1,9 @@
 const apiList = {
     signup: "/auth/signup",
     login: "/users/login/",
-    forgotPassword: "/auth/forgot_password",
-    verifyOtp: "/auth/verify_otp",
-    resetPassword: "/auth/reset_password",
+    forgotPassword: "/users/forgot-password/",
+    verifyOtp: "/users/forgot-password/verify/",
+    resetPassword: "/users/forgot-password/set-password/",
     updatePassword: "/auth/update_password",
     settings: "/system/admin/settings/",
     updateSettings: (id: number) => `/system/admin/settings/:${id}/`,

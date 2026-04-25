@@ -20,11 +20,11 @@ export default function UserPage() {
   const { users } = useUsers()
 
   // Mock subscription data, replace with actual data
-  const mockSubscription = [
-    { name: "John Doe", serial: "12345" },
-    { name: "Jane Smith", serial: "67890" },
-    // Add more mock data as needed
-  ];
+  // const mockSubscription = [
+  //   { name: "John Doe", serial: "12345" },
+  //   { name: "Jane Smith", serial: "67890" },
+  //   // Add more mock data as needed
+  // ];
 
   const filteredSubscription = users.filter(
     (user) =>

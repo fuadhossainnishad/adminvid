@@ -18,8 +18,11 @@ axiosInstance.interceptors.request.use(
 
         console.log("Token from interceptor:", token);
 
-        if (token) {
+
+        if (token && token !== "undefined" && token !== "null") {
             config.headers.Authorization = `Bearer ${token}`;
+        } else {
+            delete config.headers.Authorization;
         }
 
         return config;

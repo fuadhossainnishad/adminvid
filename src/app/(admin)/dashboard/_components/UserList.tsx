@@ -1,6 +1,6 @@
 "use client";
-import apiList from "@/services/apiList";
-import apiCall, { TMethods } from "@/services/apiMethodList";
+import apiList from "@/services/api/apiList";
+import apiCall, { TMethods } from "@/services/api/apiMethodList";
 import Image from "next/image";
 import React, { useState } from "react";
 import { toast } from "sonner";

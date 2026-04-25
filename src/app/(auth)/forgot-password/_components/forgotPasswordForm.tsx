@@ -1,8 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import apiList from "@/services/apiList";
-import apiCall, { TMethods } from "@/services/apiMethodList";
+import apiList from "@/services/api/apiList";
+import apiCall, { TMethods } from "@/services/api/apiMethodList";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
@@ -20,7 +20,6 @@ export default function ForgotPasswordForm() {
 
   const onSubmit = async (data: FieldValues) => {
     console.log("Email:", data.email);
-    router.push("/verify-otp");
     sessionStorage.setItem("email", data.email);
     const res = await apiCall(TMethods.post, apiList.forgotPassword, data);
     console.log(res);

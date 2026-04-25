@@ -2,14 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import apiList from "@/services/apiList";
-import apiCall, { TMethods } from "@/services/apiMethodList";
+import apiList from "@/services/api/apiList";
+import apiCall, { TMethods } from "@/services/api/apiMethodList";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 export default function VerifyOtpForm() {
-  const [otp, setOtp] = useState(Array(6).fill(""));
+  const [otp, setOtp] = useState(Array(4).fill(""));
   const [isOtpResent, setIsOtpResent] = useState(false);
   const [timer, setTimer] = useState(59);
   const inputRefs = useRef<HTMLInputElement[]>([]);
@@ -28,13 +28,13 @@ export default function VerifyOtpForm() {
       toast.error("Please enter the complete OTP");
       return;
     }
-          router.push("/reset-password");
-
 
     const res = await apiCall(TMethods.post, apiList.verifyOtp, {
-      email: localStorage.getItem("email"),
+      email: sessionStorage.getItem("email"),
       otp: otp.join(""),
     });
+
+    console.log("verifyOtp:", res);
 
     if (!res.success) {
 
@@ -43,6 +43,7 @@ export default function VerifyOtpForm() {
     }
 
     toast.success("OTP Verified Successfully!");
+    sessionStorage.setItem("token", res.data.accessToken);
     router.push("/reset-password");
   };
 
@@ -69,7 +70,7 @@ export default function VerifyOtpForm() {
     updated[index] = value;
     setOtp(updated);
 
-    if (value && index < 5) {
+    if (value && index < 3) {
       inputRefs.current[index + 1]?.focus();
     }
   };

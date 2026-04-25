@@ -39,8 +39,9 @@ export default function EarningModal({
             />
             <h1 className="text-2xl">{data.User.name}</h1>
           </div>
-          <section className="">{
-            Object.entries(data).filter((key) => key !== ('serial' || '')}</section>
+          {/* <section className="">{
+            Object.entries(data).filter((key) => key !== ('serial' || '')}
+          </section> */}
         </section>
       </section>
     </main>

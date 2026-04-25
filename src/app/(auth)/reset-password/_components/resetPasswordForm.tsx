@@ -1,8 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import apiList from "@/services/apiList";
-import apiCall, { TMethods } from "@/services/apiMethodList";
+import apiList from "@/services/api/apiList";
+import apiCall, { TMethods } from "@/services/api/apiMethodList";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -30,9 +30,8 @@ export default function ResetPasswordForm() {
     console.log("Email:", data.newPassword);
     console.log("Email:", data.confirmPassword);
 
-    router.push("/login");
     sessionStorage.setItem("email", data.email);
-    const res = await apiCall(TMethods.post, apiList.resetPassword, data);
+    const res = await apiCall(TMethods.post, apiList.resetPassword, { confirm_password: data.confirmPassword });
     console.log(res);
 
     if (!res.success) {
@@ -41,7 +40,7 @@ export default function ResetPasswordForm() {
       return;
     }
 
-    sessionStorage.setItem("token", res.data.token);
+    sessionStorage.setItem("token", res.data.accessToken);
     toast.success("Otp sent to your email");
     router.push("/login");
   };
@@ -53,7 +52,7 @@ export default function ResetPasswordForm() {
     >
       <div className="space-y-2 w-full">
         <label
-          htmlFor="password"
+          htmlFor="newPassword"
           className="block text-sm font-medium text-gray-700"
         >
           New Password
@@ -62,7 +61,7 @@ export default function ResetPasswordForm() {
           <Input
             id="newPassword"
             type={showPassword ? "text" : "password"}
-            {...register("password", { required: "New password is required" })}
+            {...register("newPassword", { required: "New password is required" })}
             className="h-12 w-full rounded-md border border-gray-300 px-3 py-2 pr-10 text-sm placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
           />
           <button
@@ -78,24 +77,24 @@ export default function ResetPasswordForm() {
             )}
           </button>
         </div>
-        {errors.password && (
+        {errors.newPassword && (
           <p className="text-red-500 text-sm">
-            {errors.password.message as string}
+            {errors.newPassword.message as string}
           </p>
         )}
       </div>
       <div className="space-y-2 w-full">
         <label
-          htmlFor="password"
+          htmlFor="confirmPassword"
           className="block text-sm font-medium text-gray-700"
         >
-          New Password
+          Confirm Password
         </label>
         <div className="relative">
           <Input
             id="confirmPassword"
             type={showPassword ? "text" : "password"}
-            {...register("password", {
+            {...register("confirmPassword", {
               required: "Confirm password is required",
             })}
             className="h-12 w-full rounded-md border border-gray-300 px-3 py-2 pr-10 text-sm placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
@@ -113,9 +112,9 @@ export default function ResetPasswordForm() {
             )}
           </button>
         </div>
-        {errors.password && (
+        {errors.confirmPassword && (
           <p className="text-red-500 text-sm">
-            {errors.password.message as string}
+            {errors.confirmPassword.message as string}
           </p>
         )}
       </div>

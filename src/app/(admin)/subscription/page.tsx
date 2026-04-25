@@ -8,7 +8,7 @@ import SubscriptionField from "./_components/SubscriptionField";
 export default function SubscriptionPage() {
   const [create, setCreate] = useState<boolean>(false);
   const [edit, setEdit] = useState<boolean>(false);
-  const [sub, setSub] = useState<ISubscription>({});
+  const [sub, setSub] = useState<ISubscription>({} as ISubscription);
 
   // const handleSubCreate = async () => {
   //   router.push("/subscription/create");

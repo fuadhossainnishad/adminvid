@@ -134,7 +134,7 @@ export default function VideoList() {
           ))}
         </tbody>
       </table>
-      <Pagination currentPage={1} />
+      <Pagination currentPage={1} totalPages={10} onPageChange={() => { }} />
     </main>
   );
 }

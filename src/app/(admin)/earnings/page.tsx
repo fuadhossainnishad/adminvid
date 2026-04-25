@@ -4,13 +4,13 @@ import Pagination from "../../../components/Pagination";
 import { Input } from "@/components/ui/input";
 import { Settings2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { earningsData, IEarnings } from "./Data";
+import { earningsData } from "./Data";
 import { Filter } from "@/components/Filter";
 import EarningTable from "./_components/EarningTable";
 
 export default function EarningsPage() {
-  const [openModal, setOpenModal] = useState(false);
-  const [modalData, setModalData] = useState<IEarnings>(earningsData[0]);
+  // const [openModal, setOpenModal] = useState(false);
+  // const [modalData, setModalData] = useState<IEarnings>(earningsData[0]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,11 +30,11 @@ export default function EarningsPage() {
   );
 
   const totalPages = Math.ceil(filteredSubscription.length / usersPerPage);
-  const startIndex = (currentPage - 1) * usersPerPage;
-  const currentUsers = filteredSubscription.slice(
-    startIndex,
-    startIndex + usersPerPage
-  );
+  // const startIndex = (currentPage - 1) * usersPerPage;
+  // const currentUsers = filteredSubscription.slice(
+  //   startIndex,
+  //   startIndex + usersPerPage
+  // );
 
   // Handle page change
   const handlePageChange = (page: number) => {
