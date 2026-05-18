@@ -42,14 +42,9 @@ export const videoService = {
   },
 
   async updateVideo(id: number, formData: FormData): Promise<IVideo> {
-    const response = await axiosInstance.put(
+    const response = await axiosInstance.patch(
       `${apiList.allVideo}${id}/`,
       formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      },
     );
 
     if (!response?.data) {

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { AuthProvider } from '../../utils/context/Auth.context';
 
 export default function AuthLayout({
   children,
@@ -14,7 +15,11 @@ export default function AuthLayout({
         height={400}
         width={400}
       />
-      <section className="w-1/4"> {children}</section>
+      <section className="w-1/4">
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </section>
     </main>
   );
 }

@@ -1,58 +1,150 @@
-import apiList from "@/services/api/apiList";
-import apiCall, { TMethods } from "@/services/api/apiMethodList";
-import { useEffect, useState } from "react";
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
+
+import axiosInstance from "@/config/axios.config";
 
 export interface ISettings {
     id?: number;
-    key: "privacy_policy" | "terms_conditions" | "about_us";
+    key:
+    | "privacy_policy"
+    | "terms_conditions"
+    | "about_us";
     title: string;
     content: string;
 }
 
-const useSettings = (key: ISettings["key"]) => {
-    const [settings, setSettings] = useState<ISettings | null>(null);
-    const [loading, setLoading] = useState(false);
+interface ISettingsResponse {
+    code: number;
+    success: boolean;
+    message: string;
+    timestamp: number;
+    data: ISettings;
+}
 
+const useSettings = (
+    key: ISettings["key"],
+) => {
+    /*
+    |--------------------------------------------------------------------------
+    | STATE
+    |--------------------------------------------------------------------------
+    */
 
-
-    const handleSaveChanges = async (content: string) => {
-        if (!settings?.id) return;
-
-        const payload = {
-            key: settings.key,
-            title: settings.title,
-            content,
-        };
-
-        const res = await apiCall(
-            TMethods.patch,
-            apiList.updateSettings(settings.id),
-            payload
+    const [settings, setSettings] =
+        useState<ISettings | null>(
+            null,
         );
 
-        if (res?.success) {
-            setSettings(res.data);
-        }
-    };
+    const [loading, setLoading] =
+        useState(false);
 
-    useEffect(() => {
-        const fetchSettings = async () => {
+    const [saving, setSaving] =
+        useState(false);
+
+    /*
+    |--------------------------------------------------------------------------
+    | FETCH SETTINGS
+    |--------------------------------------------------------------------------
+    */
+
+    const fetchSettings =
+        useCallback(async () => {
             try {
                 setLoading(true);
 
-                const res = await apiCall(TMethods.get, apiList.settings, { key });
+                const response =
+                    await axiosInstance.get<ISettingsResponse>(
+                        `/system/legal/${key}/`,
+                    );
 
-                if (res?.success) {
-                    setSettings(res.data);
+                if (
+                    response.data.success
+                ) {
+                    setSettings(
+                        response.data.data,
+                    );
                 }
+            } catch (error) {
+                console.error(
+                    "Failed to fetch settings:",
+                    error,
+                );
             } finally {
                 setLoading(false);
             }
-        };
-        fetchSettings();
-    }, [key]);
+        }, [key]);
 
-    return { settings, loading, handleSaveChanges };
+    /*
+    |--------------------------------------------------------------------------
+    | INITIAL FETCH
+    |--------------------------------------------------------------------------
+    */
+
+    useEffect(() => {
+        fetchSettings();
+    }, [fetchSettings]);
+
+    /*
+    |--------------------------------------------------------------------------
+    | SAVE SETTINGS
+    |--------------------------------------------------------------------------
+    */
+
+    const handleSaveChanges =
+        async (
+            content: string,
+        ) => {
+            if (!settings?.id) return;
+
+            try {
+                setSaving(true);
+
+                const payload = {
+                    key: settings.key,
+
+                    title:
+                        settings.title,
+
+                    content,
+                };
+
+                const response =
+                    await axiosInstance.patch<ISettingsResponse>(
+                        `/system/admin/settings/${settings.id}/`,
+                        payload,
+                    );
+
+                if (
+                    response.data.success
+                ) {
+                    setSettings(
+                        response.data.data,
+                    );
+                }
+
+                return response.data;
+            } catch (error) {
+                console.error(
+                    "Failed to save settings:",
+                    error,
+                );
+
+                throw error;
+            } finally {
+                setSaving(false);
+            }
+        };
+
+    return {
+        settings,
+
+        loading,
+
+        saving,
+
+        handleSaveChanges,
+    };
 };
 
 export default useSettings;

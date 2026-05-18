@@ -2,6 +2,7 @@
 import Headbar from "@/components/Headbar/page";
 import Sidebar from "@/components/Sidebar/page";
 import React, { useState } from "react";
+import { AuthProvider } from '../../utils/context/Auth.context';
 
 export default function AdminLayout({
   children,
@@ -17,7 +18,11 @@ export default function AdminLayout({
       <Headbar toggleSidebar={handleToggle} openSidebar={openSidebar} />
       <section className="flex grow ">
         {openSidebar && <Sidebar />}
-        <section className="bg-bg-list-header/20 grow p-10">{children}</section>
+        <section className="bg-bg-list-header/20 grow p-10">
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </section>
       </section>
     </main>
   );

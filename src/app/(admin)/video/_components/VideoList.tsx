@@ -63,7 +63,7 @@ export default function VideoList() {
   };
 
   return (
-    <main className="border-[1px] border-[#E5E7EB] rounded-xl grow">
+    <main className="border-[1px] border-[#E5E7EB] rounded-xl grow ">
 
       {/* HEADER (UNCHANGED DESIGN) */}
       <div className="flex justify-between items-center bg-white p-5 rounded-xl w-full">
@@ -111,8 +111,8 @@ export default function VideoList() {
                   <Image
                     src={video.thumbnail}
                     alt={video.title}
-                    width={20}
-                    height={20}
+                    width={60}
+                    height={60}
                   />
                 </td>
 
@@ -159,13 +159,14 @@ export default function VideoList() {
         </tbody>
       </table>
 
-      {/* PAGINATION */}
       {pagination && (
-        <Pagination
-          currentPage={pagination.current_page}
-          totalPages={pagination.total_pages}
-          onPageChange={(page) => changePage(page)}
-        />
+        <div className="p-5">
+          <Pagination
+            currentPage={pagination.current_page}
+            totalPages={pagination.total_pages}
+            onPageChange={(page) => changePage(page)}
+          />
+        </div>
       )}
 
       {/* MODAL */}

@@ -15,12 +15,12 @@ const sidebarData = [
     icon: "/assets/icons/user.svg",
     icongray: "/assets/icons/gray/usergray.svg",
   },
-  {
-    title: "Earning",
-    path: "/earnings",
-    icon: "/assets/icons/earning.svg",
-    icongray: "/assets/icons/gray/earninggray.svg",
-  },
+  // {
+  //   title: "Earning",
+  //   path: "/earnings",
+  //   icon: "/assets/icons/earning.svg",
+  //   icongray: "/assets/icons/gray/earninggray.svg",
+  // },
   {
     title: "Video Management",
     path: "/video",
@@ -28,11 +28,17 @@ const sidebarData = [
     icongray: "/assets/icons/gray/videogray.svg",
   },
   {
-    title: "Manage Subscription",
-    path: "/subscription",
+    title: "Category Management",
+    path: "/category",
     icon: "/assets/icons/subscription.svg",
     icongray: "/assets/icons/gray/subscriptiongray.svg",
   },
+  // {
+  //   title: "Manage Subscription",
+  //   path: "/subscription",
+  //   icon: "/assets/icons/subscription.svg",
+  //   icongray: "/assets/icons/gray/subscriptiongray.svg",
+  // },
   {
     title: "Notifications",
     path: "/notification",

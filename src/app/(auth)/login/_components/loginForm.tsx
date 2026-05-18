@@ -4,6 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import apiList from "@/services/api/apiList";
 import apiCall, { TMethods } from "@/services/api/apiMethodList";
+import { useAuth } from "@/utils/context/Auth.context";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -14,6 +15,7 @@ import { toast } from "sonner";
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false); // State for password visibility
   const router = useRouter();
+  const { setUser } = useAuth();
 
   const {
     register,
@@ -35,6 +37,7 @@ export default function LoginForm() {
     }
 
     sessionStorage.setItem("token", res.data.access);
+    setUser(res.data.user);
     console.log("sessionstorage token:", sessionStorage.getItem("token"))
     toast.success("Signed in successfully");
     router.push("/dashboard");
